@@ -26,13 +26,29 @@
 -- == Added new column "alias_name" == --
 -- ALTER TABLE repeat_shop.category ADD COLUMN alias_name VARCHAR(128) NULL AFTER discount;
 
-CREATE TABLE repeat_shop.product_type (
-id INT NOT NULL,
-`type` VARCHAR(128) NOT NULL,
-PRIMARY KEY (id));
 
+-- ==
+-- show databases;
+-- use название базы данных/схемы
+-- show tables;
+-- describe название таблицы; (показывает колонки и их атребуты) тоже самое, что и show columns from название таблицы;
+-- ставим шифт тильда, если имя таблицы/схемы схожее с оператором/командой/запросом в sql
+-- ==
 
+-- == Change column name from `type` to `name` == --
+-- ALTER TABLE repeat_shop.product_type CHANGE COLUMN `type` `name` VARCHAR(128) NOT NULL;
 
+-- == Iput data into the table (`id`, `name`, `discount`) - название колонок. После VALUES по порядку перечисленным перед VALUES колонок - внесение данных
+-- INSERT INTO repeat_shop.category (`id`, `name`, `discount`) VALUES (2, "Мужская одежда", 0);
+
+-- == Show table data (table name is "category)"
+-- SELECT*FROM category;
+
+-- == Change data in the columns. Set data in column `name` where `id` = 3
+-- UPDATE repeat_shop.category SET `name` = "Женская обувь" WHERE id = 3;
+
+-- == Setting auto increment in table (автоматически добавляет +1 к ключу при внесении новой строки). Изменяем колонку ни чего не изменяя , но добавляя атрибут авто инкремента
+-- ALTER TABLE repeat_shop.category CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 
 
 
