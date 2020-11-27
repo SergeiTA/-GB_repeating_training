@@ -50,6 +50,13 @@
 -- == Setting auto increment in table (автоматически добавляет +1 к ключу при внесении новой строки). Изменяем колонку ни чего не изменяя , но добавляя атрибут авто инкремента
 -- ALTER TABLE repeat_shop.category CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 
-
-
+USE repeat_shop; -- == Choose the database/scheme == ---
+-- == WHERE choose what parameter will determine the row == --
+-- SELECT*FROM category WHERE id = 3;  
+-- SELECT * FROM category WHERE (discount > 5) AND (discount < 15);
+-- SELECT * FROM category WHERE (discount < 5) OR (discount >=10);
+-- SELECT * FROM category WHERE NOT discount < 5;
+-- == Способ выражений WHERE с NULL == --
+-- SELECT*FROM category WHERE alias_name IS NOT NULL;
+-- SELECT*FROM category WHERE alias_name IS NULL;
 
