@@ -7,3 +7,15 @@ git config --global core.editor nazvanie)redactora установка текстового редактор
 git config --list (список конфигураций)
 
 
+ls (показать список файлов)
+cd (сменить папку) ~ - директория в которой лежит консоль    .. -вверх на одну ступень по иерархии папок   ../.. -вверх на две ступени по иерархии папок
+mkdir (создать папку)
+touch takoyto.txt(создать фаил)
+cp takoyto.txt new_takoyto.txt (копируем фаил в новый фаил)
+mv takoyto.txt new_takoyto.txt (перемещаем (move) (в данном примере переименовывем) фаил в новый фаил)
+echo "Hello" (простой вывод на экран)
+echo "Hello" > takoyto.txt (записываем Hello в фаил takoyto.txt)
+cat takoyto.txt (посмотреть содержание файла)
+rm takoyto.txt (удалить фаил)
+rm -R imya_directorii (удалить папку целиком)
+  
