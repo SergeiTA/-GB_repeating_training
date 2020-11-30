@@ -1,0 +1,9 @@
+git config --global user.name Sergei (задать имя пользователя при старте использования)
+git config --global user.email tamto@tut.com (задать email пользователя при старте использования)
+git config --global color.ui auto (автоподстветка на вывод в терминале (цвета желтый , красный и т.д. в отличии от сообщения)
+git config --global core.editor nazvanie)redactora установка текстового редактора по умолчанию 
+
+
+git config --list (список конфигураций)
+
+
