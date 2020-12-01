@@ -60,3 +60,26 @@ USE repeat_shop; -- == Choose the database/scheme == ---
 -- SELECT*FROM category WHERE alias_name IS NOT NULL;
 -- SELECT*FROM category WHERE alias_name IS NULL;
 
+-- == Choose needed column `name` == --
+-- SELECT `name` FROM category;
+-- SELECT `name`,`discount` FROM category;
+-- == DISTINCT убирает дубликаты значений == --
+-- SELECT DISTINCT `discount` FROM category;
+
+-- == Sorting table `category` by ascending `discount` column
+-- SELECT*FROM category ORDER BY `discount`;
+
+-- == Sorting table `category` by descending `discount` column
+-- SELECT*FROM `category` ORDER BY `discount` DESC;
+
+-- First, we exclude rows where `discount` == 0 , and then sort them in descending order of the `discount` column
+-- ORDER BY must follow after conditions of WHERE 
+-- SELECT*FROM `category` WHERE `discount` <> 0 ORDER BY `discount` DESC;
+
+-- == LIMIT limits the number of shown rows
+-- SELECT*FROM `category` LIMIT 2;
+-- SELECT*FROM `category` WHERE `discount` <> 0 LIMIT 2;
+
+
+
+
