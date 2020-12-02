@@ -50,11 +50,12 @@
 -- == Setting auto increment in table (автоматически добавляет +1 к ключу при внесении новой строки). Изменяем колонку ни чего не изменяя , но добавляя атрибут авто инкремента
 -- ALTER TABLE repeat_shop.category CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 
-USE repeat_shop; -- == Choose the database/scheme == ---
+
 -- == WHERE choose what parameter will determine the row == --
 -- SELECT*FROM category WHERE id = 3;  
 -- SELECT * FROM category WHERE (discount > 5) AND (discount < 15);
 -- SELECT * FROM category WHERE (discount < 5) OR (discount >=10);
+-- SELECT * FROM category WHERE id IN ( 2 , 5 ); -- Substitution for OR operator
 -- SELECT * FROM category WHERE NOT discount < 5;
 -- == Способ выражений WHERE с NULL == --
 -- SELECT*FROM category WHERE alias_name IS NOT NULL;
@@ -79,6 +80,21 @@ USE repeat_shop; -- == Choose the database/scheme == ---
 -- == LIMIT limits the number of shown rows
 -- SELECT*FROM `category` LIMIT 2;
 -- SELECT*FROM `category` WHERE `discount` <> 0 LIMIT 2;
+
+USE repeat_shop; -- == Choose the database/scheme == ---
+
+SELECT*FROM category;
+-- INSERT INTO repeat_shop.category (`id`, `name`, `discount`) VALUES (5, "Шляпы", 0);
+
+-- == UPDATE updating a cell value with WHERE operator
+-- UPDATE category SET name = "Головные уборы" WHERE id = 5;
+-- UPDATE category SET discount = 3 WHERE id = 2 OR id = 5;
+
+-- == DELETE data from row with WHERE operator
+-- DELETE FROM category WHERE id = 5;
+-- UPDATE category SET alias_name = "mens clothes" WHERE id = 2;
+-- UPDATE category SET alias_name = "Men's shoes" WHERE id = 4;
+
 
 
 
