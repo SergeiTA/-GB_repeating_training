@@ -90,12 +90,22 @@ SELECT*FROM category;
 -- UPDATE category SET name = "Головные уборы" WHERE id = 5;
 -- UPDATE category SET discount = 3 WHERE id = 2 OR id = 5;
 
--- == DELETE data from row with WHERE operator
--- DELETE FROM category WHERE id = 5;
+-- == DELETE data from row with WHERE operator  
+-- DELETE FROM category WHERE id  = 5;
 -- UPDATE category SET alias_name = "mens clothes" WHERE id = 2;
 -- UPDATE category SET alias_name = "Men's shoes" WHERE id = 4;
 
+-- == Setting up the foreign key between `product` table `brand_id` column and `brand` table `id` column/ Name of the key is `fk_brand_product`
+-- ALTER TABLE `repeat_shop`.`product` ADD CONSTRAINT `fk_brand_product` FOREIGN KEY (`brand_id`) REFERENCES `repeat_shop`.`brand` (`id`) 
+-- ON DELETE NO ACTION -- actions then delete cell. If it would be CASCADE the deletion of the id from the `brand` table will result in a deletion rows with this brand is in the associated table `product`
+-- ON UPDATE NO ACTION; -- actions then update cell
 
+
+-- == DIAGRAAMMA / SHEME  click on "Database" - "Reverce Engineer" - chhode your srerver - choose ypor batabase / cheme
+
+-- ALTER TABLE `repeat_shop`.`product` ADD CONSTRAINT `fk_category` FOREIGN KEY (`category_id`) REFERENCES `repeat_shop`.`category` (`id`)
+-- ON DELETE NO ACTION
+-- ON UPDATE NO ACTION;
 
 
 
