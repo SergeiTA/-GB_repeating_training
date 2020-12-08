@@ -63,6 +63,9 @@ git chechout imya_vetki (перейти на ветку)
 git branch imya_vetki imya_vetki_starta (Создание ветки со стоартовой точкой новой ветки , отличной от той, где сейчас находишься ты (указывается вторым параметром имени))
 git checkout -b imya_vetki (Сделать ветку и сразу переключиться на нее)
 
+git commit --amend -m "NOVOYE_NAZVANIYE" (Переименовать последний коммит)
+git commit --amend -c GASH_COMMITA (Переименовать имя комита через редактор)
+
 
 
 
