@@ -147,7 +147,7 @@
 -- ON UPDATE NO ACTION;
 -- == ---
 
-USE repeat_shop; -- == Choose the database/scheme == ---
+
 
 -- == Change "NULL" to "NOT NULL" attribute from `count` column
 -- ALTER TABLE  `repeat_shop`.`order_products` 
@@ -155,7 +155,26 @@ USE repeat_shop; -- == Choose the database/scheme == ---
 
 -- DESCRIBE `repeat_shop`.`order_products`;
 
-SELECT*FROM `order_products`;
+
+-- == INNER JOIN add table `category` to the `product` table where column `product`.`category_id` equals `category`.`id`
+-- SELECT*FROM `product` INNER JOIN `category` ON `product`.`category_id` = `category`.`id`;
+
+-- Show only `product`.`id`, `price`, `name` columns
+-- SELECT `product`.`id`, `price`, `name` FROM `product` INNER JOIN `category` ON `product`.`category_id` = `category`.`id`;
+
+-- SELECT `product`.`id`, `price`, `name` FROM `product` INNER JOIN `category` ON `product`.`category_id` = `category`.`id`
+-- WHERE price <= 8999; -- Use WHERE to filter an acquired results
+
+-- == Множественное объединение 
+USE repeat_shop; -- == Choose the database/scheme == ---
+SELECT `product`.`id`, `brand`.`name`, `product_type`.`name`, `category`.`name`, `product`.`price` FROM `product`
+INNER JOIN `category` ON `product`.`category_id` = `category`.`id`
+INNER JOIN `brand` ON `product`.`brand_id` = `brand`.`id`
+INNER JOIN `product_type` ON `product`.`product_type_id` = `product_type`.`id`
+WHERE `product_type`.`name` = "Футболка";
+
+
+
 
 
 
