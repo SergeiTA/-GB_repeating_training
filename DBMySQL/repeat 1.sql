@@ -166,15 +166,27 @@
 -- WHERE price <= 8999; -- Use WHERE to filter an acquired results
 
 -- == Множественное объединение 
+
+-- SELECT `product`.`id`, `brand`.`name`, `product_type`.`name`, `category`.`name`, `product`.`price` FROM `product`
+-- INNER JOIN `category` ON `product`.`category_id` = `category`.`id`
+-- INNER JOIN `brand` ON `product`.`brand_id` = `brand`.`id`
+-- INNER JOIN `product_type` ON `product`.`product_type_id` = `product_type`.`id`
+-- WHERE `product_type`.`name` = "Футболка";
+
+
+-- SELECT * FROM `product` INNER JOIN `category` ON `product`.`category_id` = `category`.`id`;
+
+-- == `brand`.`name` as brand_name the "name" column from "brand" table will appear as "brand_name" in query result
+-- SELECT `product`.`id`, `brand`.`name` as brand_name, `product_type`.`name`, `category`.`name`, `product`.`price` FROM `product`
+-- INNER JOIN `category` ON `product`.`category_id` = `category`.`id`
+-- INNER JOIN `brand` ON `product`.`brand_id` = `brand`.`id`
+-- INNER JOIN `product_type` ON `product`.`product_type_id` = `product_type`.`id`;
+
 USE repeat_shop; -- == Choose the database/scheme == ---
-SELECT `product`.`id`, `brand`.`name`, `product_type`.`name`, `category`.`name`, `product`.`price` FROM `product`
-INNER JOIN `category` ON `product`.`category_id` = `category`.`id`
-INNER JOIN `brand` ON `product`.`brand_id` = `brand`.`id`
-INNER JOIN `product_type` ON `product`.`product_type_id` = `product_type`.`id`
-WHERE `product_type`.`name` = "Футболка";
-
-
-
+-- LEFT JOIN. Show all categories that don't present in the "products" table. SELECT `category`.* - show columns from category table
+SELECT `category`.* FROM `category`
+LEFT JOIN `product` ON `product`.`category_id` = `category`.`id`
+WHERE `product`.`id` IS NULL;
 
 
 
