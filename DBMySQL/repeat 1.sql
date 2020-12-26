@@ -182,11 +182,30 @@
 -- INNER JOIN `brand` ON `product`.`brand_id` = `brand`.`id`
 -- INNER JOIN `product_type` ON `product`.`product_type_id` = `product_type`.`id`;
 
-USE repeat_shop; -- == Choose the database/scheme == ---
+
 -- LEFT JOIN. Show all categories that don't present in the "products" table. SELECT `category`.* - show columns from category table
-SELECT `category`.* FROM `category`
-LEFT JOIN `product` ON `product`.`category_id` = `category`.`id`
-WHERE `product`.`id` IS NULL;
+-- SELECT `category`.* FROM `category`
+-- LEFT JOIN `product` ON `product`.`category_id` = `category`.`id`
+-- WHERE `product`.`id` IS NULL;
+
+
+-- INSERT INTO `order` (`user_name`, `phone`, `datetime`) VALUES ("Петр", "888-88-88", "2016-05-28");
+USE repeat_shop; -- == Choose the database/scheme == ---
+
+SELECT * FROM `order`
+ LEFT JOIN `order_products` ON `order`.`id` = `order_products`.`order_id`
+ LEFT JOIN `product` ON `order_products`.`product_id` = `product`.`id` -- ТУТ УЖАЛИТЬ точку с запятой
+
+UNION
+
+SELECT * FROM `order`
+ INNER JOIN `order_products` ON `order`.`id` = `order_products`.`order_id`
+ RIGHT JOIN `product` ON `order_products`.`product_id` = `product`.`id`
+ WHERE `order`.`id` is NULL;
+
+
+
+
 
 
 
