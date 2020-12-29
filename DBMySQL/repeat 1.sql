@@ -190,23 +190,33 @@
 
 
 -- INSERT INTO `order` (`user_name`, `phone`, `datetime`) VALUES ("Петр", "888-88-88", "2016-05-28");
+
+
+-- SELECT * FROM `order`
+--  LEFT JOIN `order_products` ON `order`.`id` = `order_products`.`order_id`
+--  LEFT JOIN `product` ON `order_products`.`product_id` = `product`.`id` -- ТУТ УЖАЛИТЬ точку с запятой
+
+-- UNION --== Unite both of these JOINs in one output, we can use "AS" for rename outputted columns
+
+-- SELECT * FROM `order`
+--  INNER JOIN `order_products` ON `order`.`id` = `order_products`.`order_id`
+--  RIGHT JOIN `product` ON `order_products`.`product_id` = `product`.`id`
+--  WHERE `order`.`id` is NULL;
+
+
+-- SELECT count(*) FROM `product`; -- "count" numbers of rows
+-- SELECT count(*) FROM `product` WHERE `product`.`price` < 10000;
+-- SELECT sum(`product`.`price`) FROM `product`; -- Summarises of all values in `price` column
+-- SELECT sum(`product`.`price`) as common_worth, min(`product`.`price`) as min_prise, max(`product`.`price`) as max_prise FROM `product` WHERE `product`.`price` <= 10000; -- MAX and MIN
+
+-- INSERT INTO `order_products` (`order_id`, `product_id`, `count`) VALUES ('2', '2', '1');
+-- INSERT INTO `order_products` (`order_id`, `product_id`, `count`) VALUES ('2', '1', '2');
+
 USE repeat_shop; -- == Choose the database/scheme == ---
-
-SELECT * FROM `order`
- LEFT JOIN `order_products` ON `order`.`id` = `order_products`.`order_id`
- LEFT JOIN `product` ON `order_products`.`product_id` = `product`.`id` -- ТУТ УЖАЛИТЬ точку с запятой
-
-UNION
-
-SELECT * FROM `order`
- INNER JOIN `order_products` ON `order`.`id` = `order_products`.`order_id`
- RIGHT JOIN `product` ON `order_products`.`product_id` = `product`.`id`
- WHERE `order`.`id` is NULL;
-
-
-
-
-
+SELECT `order`.`id`,`order`.`user_name`, `order_products`.`count`, `product`.`price`, price * `count` as total, sum(price * `count`) as TP FROM `order` -- УМНОЖЕНИЕ ВОЗМОЖНО В КОЛОКНКАХ 
+INNER JOIN `order_products` ON `order`.`id` = `order_products`.`order_id`
+INNER JOIN `product` ON `order_products`.`product_id` = `product`.`id`
+WHERE `order`.`id` = "1";
 
 
 
