@@ -224,16 +224,25 @@
 -- INNER JOIN `product` ON `order_products`.`product_id` = `product`.`id`
 -- GROUP BY `order`.`user_name`; -- Выводит агрегирующий запрос сумм , но уже не по всем столбцам один ответ суммы, а на две строки для `order`.`user_name`
 
+-- USE repeat_shop;
+-- SELECT `order`.`user_name`, max(`product`.`price`), count(*), sum(`count`) FROM `order` -- Агрегирующая функция возвращает максимм по толбцу price среди сгрупированных по `order`.`user_name`. Count считает количество строк (в данном слечае это по 2 различных типа товаров у каждого в корзине). Sum(`count`) поличество товаров по столбцу каунт для каждого юзера
+-- INNER JOIN `order_products` ON `order`.`id` = `order_products`.`order_id`
+-- INNER JOIN `product` ON `order_products`.`product_id` = `product`.`id`
+-- GROUP BY `order`.`user_name`;
+
+-- USE repeat_shop;
+--  SELECT `order`.`user_name`, max(`product`.`price`), sum(`count`) FROM `order`
+--  INNER JOIN `order_products` ON `order`.`id` = `order_products`.`order_id`
+--  INNER JOIN `product` ON `order_products`.`product_id` = `product`.`id`
+ -- WHERE `user_name` like 'В%'
+--  GROUP BY `order`.`user_name`;
+
 USE repeat_shop;
-SELECT `order`.`user_name`, max(`product`.`price`), count(*), sum(`count`) FROM `order` -- Агрегирующая функция возвращает максимм по толбцу price среди сгрупированных по `order`.`user_name`. Count считает количество строк (в данном слечае это по 2 различных типа товаров у каждого в корзине). Sum(`count`) поличество товаров по столбцу каунт для каждого юзера
-INNER JOIN `order_products` ON `order`.`id` = `order_products`.`order_id`
-INNER JOIN `product` ON `order_products`.`product_id` = `product`.`id`
-GROUP BY `order`.`user_name`;
-
-
-
-
-
+  SELECT `order`.`user_name`, max(`product`.`price`), sum(`count`) FROM `order`
+  INNER JOIN `order_products` ON `order`.`id` = `order_products`.`order_id`
+  INNER JOIN `product` ON `order_products`.`product_id` = `product`.`id`
+  GROUP BY `order`.`user_name`
+  HAVING sum(`count`) >= 4; -- Это WHERE для агрегирующей функции так же можно задать ус=ловие по присвоенному имени столбца через AS 
 
 
 
