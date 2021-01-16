@@ -237,16 +237,19 @@
  -- WHERE `user_name` like 'В%'
 --  GROUP BY `order`.`user_name`;
 
-USE repeat_shop;
-  SELECT `order`.`user_name`, max(`product`.`price`), sum(`count`) FROM `order`
-  INNER JOIN `order_products` ON `order`.`id` = `order_products`.`order_id`
-  INNER JOIN `product` ON `order_products`.`product_id` = `product`.`id`
-  GROUP BY `order`.`user_name`
-  HAVING sum(`count`) >= 4; -- Это WHERE для агрегирующей функции так же можно задать ус=ловие по присвоенному имени столбца через AS 
+-- USE repeat_shop;
+  -- SELECT `order`.`user_name`, max(`product`.`price`), sum(`count`) FROM `order`
+  -- INNER JOIN `order_products` ON `order`.`id` = `order_products`.`order_id`
+  -- INNER JOIN `product` ON `order_products`.`product_id` = `product`.`id`
+  -- GROUP BY `order`.`user_name`
+  -- HAVING sum(`count`) >= 4; -- Это WHERE для агрегирующей функции так же можно задать ус=ловие по присвоенному имени столбца через AS 
 
 
-
-
-
-
-
+USE `repeat_shop`;
+	-- SELECT `name` FROM `category`;
+	-- INSERT INTO `category` (name, discount, alias_name) VALUES ("Мужская верхняя одежда", 5, "AAA");
+	-- SELECT DISTINCT `discount` FROM `category`;
+	-- SELECT * FROM `category` ORDER BY `discount`DESC;
+	-- SELECT * FROM `category`WHERE `discount` <> 5 ORDER BY `discount`;
+    SELECT * FROM `category`WHERE `discount` <> 5 ORDER BY `discount` DESC LIMIT 2;
+    
