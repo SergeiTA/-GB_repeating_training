@@ -251,5 +251,38 @@ USE `repeat_shop`;
 	-- SELECT DISTINCT `discount` FROM `category`;
 	-- SELECT * FROM `category` ORDER BY `discount`DESC;
 	-- SELECT * FROM `category`WHERE `discount` <> 5 ORDER BY `discount`;
-    SELECT * FROM `category`WHERE `discount` <> 5 ORDER BY `discount` DESC LIMIT 2;
+    -- SELECT * FROM `category`WHERE `discount` <> 5 ORDER BY `discount` DESC LIMIT 2;
+    
+-- CREATE TABLE `repeat_shop`.`user_bank_accoun` (
+--  	`id` INT NOT NULL AUTO_INCREMENT,
+--     	`money` DECIMAL(10, 2) NOT NULL,
+--     	`user_name` VARCHAR(45) NOT NULL,
+--     PRIMARY KEY (`id`));
+
+-- INSERT INTO `repeat_shop`.`user_bank_accoun` (`money`, `user_name`) VALUES (100, 'Дмитрий');
+-- INSERT INTO `repeat_shop`.`user_bank_accoun` (`money`, `user_name`) VALUES (200, 'Евгений');
+
+-- UPDATE `repeat_shop`.`user_bank_accoun` SET money = money - 100 WHERE id = 1;
+-- UPDATE `repeat_shop`.`user_bank_accoun` SET money = money + 100 WHERE id = 2;
+-- SELECT * FROM `repeat_shop`.`user_bank_accoun`;
+
+-- UPDATE `repeat_shop`.`user_bank_accoun` SET money = money + 100 WHERE id = 1;
+-- UPDATE `repeat_shop`.`user_bank_accoun` SET money = money - 100 WHERE id = 2;
+-- SELECT * FROM `repeat_shop`.`user_bank_accoun`;
+
+START TRANSACTION;
+	UPDATE `repeat_shop`.`user_bank_accoun` SET money = money - 100 WHERE id = 1;
+    UPDATE `repeat_shop`.`user_bank_accoun` SET money = money + 100 WHERE id = 2;
+COMMIT;
+SELECT * FROM `repeat_shop`.`user_bank_accoun`;
+    
+
+
+
+
+
+
+
+    
+    
     
