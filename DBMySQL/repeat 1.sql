@@ -270,19 +270,56 @@ USE `repeat_shop`;
 -- UPDATE `repeat_shop`.`user_bank_accoun` SET money = money - 100 WHERE id = 2;
 -- SELECT * FROM `repeat_shop`.`user_bank_accoun`;
 
-START TRANSACTION;
-	UPDATE `repeat_shop`.`user_bank_accoun` SET money = money - 100 WHERE id = 1;
-    UPDATE `repeat_shop`.`user_bank_accoun` SET money = money + 100 WHERE id = 2;
-COMMIT;
-SELECT * FROM `repeat_shop`.`user_bank_accoun`;
+-- START TRANSACTION;
+	-- UPDATE `repeat_shop`.`user_bank_accoun` SET money = money - 100 WHERE id = 1;
+    -- UPDATE `repeat_shop`.`user_bank_accoun` SET money = money + 100 WHERE id = 2;
+-- COMMIT;
+-- SELECT * FROM `repeat_shop`.`user_bank_accoun`;
+
+-- CREATE SCHEMA `sport`; -- Greating the database
+
+-- CREATE TABLE `sport`.`competition` (
+	-- `competition_id` INT NOT NULL AUTO_INCREMENT,
+    -- `competition_name` VARCHAR(45) NOT NULL,
+    -- `word_record` VARCHAR(45) NOT NULL,
+    -- `set_date` date,
+-- PRIMARY KEY (`competition_id`));
     
+-- CREATE TABLE `sport`.`result` (
+	-- `competition_id` INT NOT NULL,
+    -- `sportsman_id` INT NOT NULL,
+    -- `result` INT NOT NULL,
+    -- `city` VARCHAR(45),
+    -- `hold_date` DATE NOT NULL,
+-- PRIMARY KEY(`competition_id`, `sportsman_id`));
 
+-- CREATE TABLE `sport`.`sportsman` (
+	-- `sportsman_id` INT NOT NULL AUTO_INCREMENT,
+    -- `sportsman_name` VARCHAR(45) NOT NULL,
+    -- `rank` VARCHAR(45) NOT NULL,
+    -- `year_of_birth` INT NOT NULL,
+    -- `personal_record` VARCHAR(45) NOT NULL,
+    -- `country` VARCHAR(45) NOT NULL,
+-- PRIMARY KEY(`sportsman_id`));
 
-
-
-
-
-
-    
+USE `sport`;
+-- ALTER TABLE `sport`.`sportsman`
+	-- CHANGE COLUMN `rank` `rank` INT NOT NULL;
+-- INSERT INTO `sport`.`competition` (`competition_name`, `word_record`, `set_date`) VALUES ("Swim", "NO", '01.01.2000');
+-- UPDATE `sport`.`competition` SET `set_date` = '2005-02-15' WHERE competition_id = 3;
+-- UPDATE `sport`.`competition` SET `set_date` = '2003-05-15' WHERE competition_id = 4;
+-- UPDATE `sport`.`competition` SET competition_name = "Football" WHERE competition_id = 4;
+-- UPDATE `sport`.`competition` SET competition_name = "Jump" WHERE competition_id = 3;
+-- INSERT INTO `sport`.`competition` (`competition_name`, `word_record`, `set_date`) VALUES ("Run", "YES", '2007-07-30');
+-- INSERT INTO `sport`.`sportsman` (`sportsman_name`, `rank`, `year_of_birth`, `personal_record`, `country`) VALUES ("John", 5, 1980, "Swim 100m in 20 sec", "USA");
+-- INSERT INTO `sport`.`sportsman` (`sportsman_name`, `rank`, `year_of_birth`, `personal_record`, `country`) VALUES ("Clara", 2, 1998, "Run 100m in 50 sec", "England");
+-- INSERT INTO `sport`.`sportsman` (`sportsman_name`, `rank`, `year_of_birth`, `personal_record`, `country`) VALUES ("Bob", 1, 1995, "Made 10 goals in on match", "France");
+-- INSERT INTO `sport`.`sportsman` (`sportsman_name`, `rank`, `year_of_birth`, `personal_record`, `country`) VALUES ("Tot", 3, 1995, "Nice guy)", "Italy");
+-- INSERT INTO `sport`.`sportsman` (`sportsman_name`, `rank`, `year_of_birth`, `personal_record`, `country`) VALUES ("Bill", 3, 1990, "Did some thing in sport", "Spain");
+INSERT INTO `sport`.`result` (`competition_id`, `sportsman_id`, `result`, `city`, `hold_date`) VALUES (1, 2, 50, "London", '2012-05-04');
+INSERT INTO `sport`.`result` (`competition_id`, `sportsman_id`, `result`, `city`, `hold_date`) VALUES (2, 1, 20, "Washington", '2015-07-20');
+INSERT INTO `sport`.`result` (`competition_id`, `sportsman_id`, `result`, `city`, `hold_date`) VALUES (3, 4, 15, "Rome", '2014-03-25');
+INSERT INTO `sport`.`result` (`competition_id`, `sportsman_id`, `result`, `city`, `hold_date`) VALUES (4, 3, 10, "Paris", '2015-07-20');
+INSERT INTO `sport`.`result` (`competition_id`, `sportsman_id`, `result`, `city`, `hold_date`) VALUES (5, 5, 12, "Madrid", '2017-09-15');
     
     
