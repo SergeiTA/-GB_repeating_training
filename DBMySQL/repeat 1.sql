@@ -302,7 +302,7 @@ USE `repeat_shop`;
     -- `country` VARCHAR(45) NOT NULL,
 -- PRIMARY KEY(`sportsman_id`));
 
-USE `sport`;
+
 -- ALTER TABLE `sport`.`sportsman`
 	-- CHANGE COLUMN `rank` `rank` INT NOT NULL;
 -- INSERT INTO `sport`.`competition` (`competition_name`, `word_record`, `set_date`) VALUES ("Swim", "NO", '01.01.2000');
@@ -316,10 +316,51 @@ USE `sport`;
 -- INSERT INTO `sport`.`sportsman` (`sportsman_name`, `rank`, `year_of_birth`, `personal_record`, `country`) VALUES ("Bob", 1, 1995, "Made 10 goals in on match", "France");
 -- INSERT INTO `sport`.`sportsman` (`sportsman_name`, `rank`, `year_of_birth`, `personal_record`, `country`) VALUES ("Tot", 3, 1995, "Nice guy)", "Italy");
 -- INSERT INTO `sport`.`sportsman` (`sportsman_name`, `rank`, `year_of_birth`, `personal_record`, `country`) VALUES ("Bill", 3, 1990, "Did some thing in sport", "Spain");
-INSERT INTO `sport`.`result` (`competition_id`, `sportsman_id`, `result`, `city`, `hold_date`) VALUES (1, 2, 50, "London", '2012-05-04');
-INSERT INTO `sport`.`result` (`competition_id`, `sportsman_id`, `result`, `city`, `hold_date`) VALUES (2, 1, 20, "Washington", '2015-07-20');
-INSERT INTO `sport`.`result` (`competition_id`, `sportsman_id`, `result`, `city`, `hold_date`) VALUES (3, 4, 15, "Rome", '2014-03-25');
-INSERT INTO `sport`.`result` (`competition_id`, `sportsman_id`, `result`, `city`, `hold_date`) VALUES (4, 3, 10, "Paris", '2015-07-20');
-INSERT INTO `sport`.`result` (`competition_id`, `sportsman_id`, `result`, `city`, `hold_date`) VALUES (5, 5, 12, "Madrid", '2017-09-15');
+-- INSERT INTO `sport`.`result` (`competition_id`, `sportsman_id`, `result`, `city`, `hold_date`) VALUES (1, 2, 50, "London", '2012-05-04');
+-- INSERT INTO `sport`.`result` (`competition_id`, `sportsman_id`, `result`, `city`, `hold_date`) VALUES (2, 1, 20, "Washington", '2015-07-20');
+-- INSERT INTO `sport`.`result` (`competition_id`, `sportsman_id`, `result`, `city`, `hold_date`) VALUES (3, 4, 15, "Rome", '2014-03-25');
+-- INSERT INTO `sport`.`result` (`competition_id`, `sportsman_id`, `result`, `city`, `hold_date`) VALUES (4, 3, 10, "Paris", '2015-07-20');
+-- INSERT INTO `sport`.`result` (`competition_id`, `sportsman_id`, `result`, `city`, `hold_date`) VALUES (5, 5, 12, "Madrid", '2017-09-15');
+
+
+-- SELECT * FROM `sport`.`result`;
+-- SELECT `competition_id` as id, `competition_name` as name FROM `sport`.`competition`;
+
+-- == Setting up the foreign key between `product` table `brand_id` column and `brand` table `id` column/ Name of the key is `fk_brand_product`
+-- ALTER TABLE `repeat_shop`.`product` ADD CONSTRAINT `fk_brand_product` FOREIGN KEY (`brand_id`) REFERENCES `repeat_shop`.`brand` (`id`) 
+-- ON DELETE NO ACTION -- actions then delete cell. If it would be CASCADE the deletion of the id from the `brand` table will result in a deletion rows with this brand is in the associated table `product`
+-- ON UPDATE NO ACTION; -- actions then update cell
+
+USE `sport`;
+-- ALTER TABLE `competition` ADD CONSTRAINT `fk_competiton_result` FOREIGN KEY (`competition_id`) REFERENCES `result` (`competition_id`)
+	-- ON DELETE NO ACTION
+    -- ON UPDATE NO ACTION;
+-- ALTER TABLE `sportsman` ADD CONSTRAINT `fk_sportsman_result` FOREIGN KEY (`sportsman_id`) REFERENCES `sport`.`result` (`sportsman_id`)
+	-- ON DELETE NO ACTION
+    -- ON UPDATE NO ACTION;
+-- SELECT `sportsman`.*, `result`.`competition_id`, `result`.`result` ,`result`.`city` ,`result`.`hold_date`, `competition`.`competition_name` , `competition`.`word_record` , `competition`.`set_date` FROM `sportsman`
+	-- INNER JOIN `result` ON `sportsman`.`sportsman_id` = `result`.`sportsman_id`
+    -- INNER JOIN `competition` ON `result`.`competition_id` = `competition`.`competition_id`;
+    
+-- SELECT * FROM `competition`
+	-- INNER JOIN `result` ON `competition`.`competition_id` = `result`.`competition_id`
+    -- INNER JOIN `sportsman` ON `result`.`sportsman_id` = `sportsman`.`sportsman_id`;
+
+-- SELECT `sportsman`.`sportsman_name` FROM `sportsman` WHERE `year_of_birth` <> 1995;
+
+-- SELECT * FROM `competition`
+	-- INNER JOIN `result` ON `competition`.`competition_id` = `result`.`competition_id`
+    -- WHERE `competition`.`set_date` IN ('2001-01-20', '2007-07-30'); 
+
+SELECT * FROM `competition`
+	INNER JOIN `result` ON `competition`.`competition_id` = `result`.`competition_id`
+    WHERE (`result`.`city` = "London" OR `result`.`city` = "Paris") AND `result`.`result` = 10;
+
+
+
+
+
+
+
     
     
