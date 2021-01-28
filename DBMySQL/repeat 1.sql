@@ -331,7 +331,7 @@ USE `repeat_shop`;
 -- ON DELETE NO ACTION -- actions then delete cell. If it would be CASCADE the deletion of the id from the `brand` table will result in a deletion rows with this brand is in the associated table `product`
 -- ON UPDATE NO ACTION; -- actions then update cell
 
-USE `sport`;
+
 -- ALTER TABLE `competition` ADD CONSTRAINT `fk_competiton_result` FOREIGN KEY (`competition_id`) REFERENCES `result` (`competition_id`)
 	-- ON DELETE NO ACTION
     -- ON UPDATE NO ACTION;
@@ -352,15 +352,33 @@ USE `sport`;
 	-- INNER JOIN `result` ON `competition`.`competition_id` = `result`.`competition_id`
     -- WHERE `competition`.`set_date` IN ('2001-01-20', '2007-07-30'); 
 
-SELECT * FROM `competition`
-	INNER JOIN `result` ON `competition`.`competition_id` = `result`.`competition_id`
-    WHERE (`result`.`city` = "London" OR `result`.`city` = "Paris") AND `result`.`result` = 10;
+-- SELECT * FROM `competition`
+	-- INNER JOIN `result` ON `competition`.`competition_id` = `result`.`competition_id`
+    -- WHERE (`result`.`city` = "London" OR `result`.`city` = "Paris") AND `result`.`result` = 10;
+
+
+-- SELECT * FROM `sportsman`
+		-- INNER JOIN `result` ON `sportsman`.`sportsman_id` = `result`.`sportsman_id`
+        -- WHERE `result`.`result` <> 10;
+-- ALTER TABLE `competition`
+	-- CHANGE COLUMN `word_record` `world_record` VARCHAR(45);
+
+-- SELECT `competition`.`competition_name`, `competition`.`world_record`, `competition`.`set_date` FROM `competition` 
+	-- WHERE `world_record` = "YES" AND `set_date` = '2001-01-20';
+
+
+-- SELECT `result`.`city`, `result`.`result` FROM `result`
+	-- WHERE `result`.`result` IN (10 , 12, 15);
+
+-- SELECT * FROM `sportsman`
+	-- WHERE `sportsman`.`year_of_birth` > 1990 AND NOT (`sportsman`.`rank` IN (3, 1)); 
+
+-- SELECT ((76*65)-150) FROM `sportsman`;
+
+USE `sport`;		
+-- SELECT `result`.`hold_date` as `date` FROM `competition`
+	-- INNER JOIN `result` ON `competition`.`competition_id` = `result`.`competition_id`
+	-- WHERE `city` LIKE 'L%';
 
 
 
-
-
-
-
-    
-    
