@@ -390,17 +390,34 @@ USE `repeat_shop`;
 -- INSERT INTO `competition` (`competition_name`, `world_record`, `set_date`) VALUES ("Irony", "YES", '2009-05-30');
 	-- WHERE `competition_name` LIKE '%i%';
 
-USE `sport`;			
+		
 -- SELECT DISTINCT `year_of_birth` FROM `sportsman` 
 -- SELECT count(`hold_date`) FROM `result`
 	-- WHERE month(hold_date) = 7;
     -- WHERE `hold_date` = '2015-07-20';
 -- SELECT max(`result`) FROM `result`
 	-- WHERE `city` LIKE 'M%';
-SELECT min(`year_of_birth`) FROM `sportsman`
-	WHERE `rank` = 1;
+-- SELECT min(`year_of_birth`) FROM `sportsman`
+	-- WHERE `rank` = 1;
 	
 
+-- SELECT * FROM `result`
+	-- INNER JOIN `competition` ON month(`result`.`hold_date`) = month(`competition`.`set_date`)
+    -- LEFT JOIN `sportsman` ON `result`.`sportsman_id` = `sportsman`.`sportsman_id`;
+	-- WHERE year(`result`.`hold_date`) = year(`competition`.`set_date`);
+
+-- SELECT `competition_name` FROM `competition`
+	-- WHERE `set_date` = (SELECT `hold_date` FROM `result` WHERE `city` = "Milan");
+
+-- SELECT sum(`rank`)/count(`rank`) FROM `sportsman`;
+
+USE `sport`;	
+-- SELECT * FROM `sportsman`
+	-- INNER JOIN `result` ON `sportsman`.`sportsman_id` = `result`.`sportsman_id`
+    -- WHERE `result`.`result` > (SELECT sum(`result`.`result`)/count(`result`.`result`) FROM `result`);
+SELECT * FROM `sportsman`
+	LEFT JOIN `result` ON `sportsman`.`sportsman_id` = `result`.`sportsman_id`
+    WHERE `sportsman`.`year_of_birth` < (SELECT year(`result`.`hold_date`) FROM `result` WHERE `result`.`result` = 12);
 
 
 
