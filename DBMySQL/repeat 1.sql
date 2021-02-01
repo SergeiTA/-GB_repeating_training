@@ -411,19 +411,35 @@ USE `repeat_shop`;
 
 -- SELECT sum(`rank`)/count(`rank`) FROM `sportsman`;
 
-USE `sport`;	
+
 -- SELECT * FROM `sportsman`
 	-- INNER JOIN `result` ON `sportsman`.`sportsman_id` = `result`.`sportsman_id`
     -- WHERE `result`.`result` > (SELECT sum(`result`.`result`)/count(`result`.`result`) FROM `result`);
-SELECT * FROM `sportsman`
-	LEFT JOIN `result` ON `sportsman`.`sportsman_id` = `result`.`sportsman_id`
-    WHERE `sportsman`.`year_of_birth` < (SELECT year(`result`.`hold_date`) FROM `result` WHERE `result`.`result` = 12);
+-- SELECT * FROM `sportsman`
+	-- LEFT JOIN `result` ON `sportsman`.`sportsman_id` = `result`.`sportsman_id`
+   -- WHERE `sportsman`.`year_of_birth` < (SELECT year(`result`.`hold_date`) FROM `result` WHERE `result`.`result` = 12);
 
+	
+-- SELECT `sportsman`.`sportsman_name` as `SPORTSMAN`, `result`.`result` as `SHOW THE RESULT`, `result`.`city` as `IN CITY` FROM `sportsman`
+	-- INNER JOIN `result` ON `sportsman`.`sportsman_id` = `result`.`sportsman_id`;
 
+-- SELECT * FROM `sportsman`
+	-- WHERE `rank` < (SELECT sum(`rank`)/count(`rank`) FROM `sportsman`) AND `year_of_birth` < 1996;
 
+-- SELECT count(`sportsman`.`sportsman_id`) FROM `sportsman`
+	-- INNER JOIN `result` ON `sportsman`.`sportsman_id` = `result`.`sportsman_id`
+    -- INNER JOIN `competition` ON `result`.`competition_id` = `competition`.`competition_id`
+    -- WHERE `sportsman`.`year_of_birth` > 1990 AND `competition`.`world_record` = "YES";
 
+-- SELECT `result`.`city` FROM `result`
+	-- INNER JOIN `competition` ON `result`.`competition_id` = `competition`.`competition_id`
+	-- WHERE `competition`.`world_record` = "YES";
 
-
+USE `sport`;
+SELECT min(`sportsman`.`rank`) FROM `sportsman`
+	INNER JOIN `result` ON `sportsman`.`sportsman_id` = `result`.`sportsman_id`
+    INNER JOIN `competition` ON `result`.`competition_id` = `competition`.`competition_id`
+    WHERE `competition`.`world_record` = "YES";
 
 
 
