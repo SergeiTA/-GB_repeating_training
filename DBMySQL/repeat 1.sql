@@ -435,13 +435,37 @@ USE `repeat_shop`;
 	-- INNER JOIN `competition` ON `result`.`competition_id` = `competition`.`competition_id`
 	-- WHERE `competition`.`world_record` = "YES";
 
+
+-- SELECT min(`sportsman`.`rank`) FROM `sportsman`
+	-- INNER JOIN `result` ON `sportsman`.`sportsman_id` = `result`.`sportsman_id`
+    -- INNER JOIN `competition` ON `result`.`competition_id` = `competition`.`competition_id`
+    -- WHERE `competition`.`world_record` = "YES";
+
+-- SELECT `competition_name` FROM `competition` ORDER BY `set_date` DESC;
+
+
+-- SELECT `sportsman`.`country`, count(*) as `AAA` FROM `sportsman`
+	-- INNER JOIN `result` ON `sportsman`.`sportsman_id` = `result`.`sportsman_id`
+    -- INNER JOIN `competition` ON `result`.`competition_id` = `competition`.`competition_id`
+	-- GROUP BY `sportsman`.`country` ORDER BY `AAA` DESC LIMIT 1; -- Определите, спортсмены какой страны участвовали в соревнованиях больше всего
+
+-- UPDATE repeat_shop.category SET `name` = "Женская обувь" WHERE id = 3;
+
 USE `sport`;
-SELECT min(`sportsman`.`rank`) FROM `sportsman`
-	INNER JOIN `result` ON `sportsman`.`sportsman_id` = `result`.`sportsman_id`
-    INNER JOIN `competition` ON `result`.`competition_id` = `competition`.`competition_id`
-    WHERE `competition`.`world_record` = "YES";
+-- UPDATE `sportsman` SET `rank` = `rank` + 1 WHERE `sportsman`.`sportsman_id` IN (
+-- SELECT `result`.`sportsman_id` FROM `result`	
+	-- INNER JOIN `competition` ON `result`.`competition_id` = `competition`.`competition_id`
+    -- WHERE `competition`.`world_record` = "YES"); -- Измените разряд на 1 тех спортсменов, у которых есть мировой рекорд.
+    
+-- SELECT 2021 - `sportsman`.`year_of_birth` AS `age` FROM `sportsman`
+	-- INNER JOIN `result` ON `sportsman`.`sportsman_id` = `result`.`sportsman_id`
+    -- WHERE `result`.`city` = "Washington";
 
+-- UPDATE `competition` SET `competition`.`set_date` = date_add(`competition`.`set_date`, INTERVAL 4 DAY) WHERE `competition`.`competition_id` = (
+	-- SELECT `result`.`competition_id` FROM `result`	WHERE `result`.`city` = "Washington"); -- 2020-05-20
 
+UPDATE `sportsman` SET `sportsman`.`country` = "Russia" WHERE `sportsman`.`sportsman_id` IN ( SELECT `cntr` FROM (
+SELECT `sportsman`.`sportsman_id` AS `cntr` FROM `sportsman` WHERE `sportsman`.`country` = "Italy") AS `c`);  -- Can't specify target table for update in FROM clause
 
 
 
