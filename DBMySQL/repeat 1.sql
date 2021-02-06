@@ -447,11 +447,11 @@ USE `repeat_shop`;
 -- SELECT `sportsman`.`country`, count(*) as `AAA` FROM `sportsman`
 	-- INNER JOIN `result` ON `sportsman`.`sportsman_id` = `result`.`sportsman_id`
     -- INNER JOIN `competition` ON `result`.`competition_id` = `competition`.`competition_id`
-	-- GROUP BY `sportsman`.`country` ORDER BY `AAA` DESC LIMIT 1; -- Определите, спортсмены какой страны участвовали в соревнованиях больше всего
+	-- GROUP BY `sportsman`.`country` ORDER BY `AAA` DESC LIMIT 1; -- Определите, спортсмен какой страны участвовали в соревнованиях больше всего
 
 -- UPDATE repeat_shop.category SET `name` = "Женская обувь" WHERE id = 3;
 
-USE `sport`;
+
 -- UPDATE `sportsman` SET `rank` = `rank` + 1 WHERE `sportsman`.`sportsman_id` IN (
 -- SELECT `result`.`sportsman_id` FROM `result`	
 	-- INNER JOIN `competition` ON `result`.`competition_id` = `competition`.`competition_id`
@@ -464,10 +464,24 @@ USE `sport`;
 -- UPDATE `competition` SET `competition`.`set_date` = date_add(`competition`.`set_date`, INTERVAL 4 DAY) WHERE `competition`.`competition_id` = (
 	-- SELECT `result`.`competition_id` FROM `result`	WHERE `result`.`city` = "Washington"); -- 2020-05-20
 
-UPDATE `sportsman` SET `sportsman`.`country` = "Russia" WHERE `sportsman`.`sportsman_id` IN ( SELECT `cntr` FROM (
-SELECT `sportsman`.`sportsman_id` AS `cntr` FROM `sportsman` WHERE `sportsman`.`country` = "Italy") AS `c`);  -- Can't specify target table for update in FROM clause
+-- UPDATE `sportsman` SET `sportsman`.`country` = "Russia" WHERE `sportsman`.`sportsman_id` IN ( SELECT `cntr` FROM (
+-- SELECT `sportsman`.`sportsman_id` AS `cntr` FROM `sportsman` WHERE `sportsman`.`country` = "Italy") AS `c`);  -- Can't specify target table for update in FROM clause
 
 
+-- update `competition` SET `competition`.`competition_name` = "hurdle_race" WHERE `competition`.`competition_id` = (	SELECT `cmpt` FROM (
+-- 		SELECT `competition`.`competition_id` AS `cmpt` FROM `competition` WHERE `competition`.`competition_name` = "Run") AS `a`);
+
+-- UPDATE `result` SET `result`.`result` = `result`.`result` + 2 WHERE `result`.`competition_id` IN (SELECT `competition`.`competition_id` AS `A` FROM `competition`
+	-- WHERE year(`competition`.`set_date`) < 2004);
+
+USE `sport`;
+-- UPDATE `result` SET `result`.`result` = `result`.`result` - 2 WHERE `result`.`competition_id` = (SELECT `aaa` FROM 
+-- (SELECT `competition`.`competition_id` AS `aaa` FROM `competition`
+	-- INNER JOIN `result` ON `competition`.`competition_id` = `result`.`competition_id`
+	-- WHERE year(`competition`.`set_date`) < 2004 AND `result`.`result` = 50) AS `a` ); 
+
+DELETE FROM `sportsman` WHERE `sportsman`.`sportsman_id` = (SELECT `rec` FROM (
+	SELECT `sportsman`.`sportsman_id` AS `rec` FROM `sportsman` WHERE `sportsman`.`personal_record` = "AAA") AS `a`);
 
 
 
