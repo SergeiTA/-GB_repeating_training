@@ -518,7 +518,7 @@ USE `repeat_shop`;
 --     `snum` INT NOT NULL,
 -- PRIMARY KEY (`onum`));
 
-USE `test`;
+
 -- INSERT INTO `test`.`salespeople` (`snum`, `sname`, `city`, `comm`) VALUES (1002, "Serres", "San Jose", 0.13);    
 -- INSERT INTO `salespeople` (`snum`, `sname`, `city`, `comm`) VALUES (1007, "Rifkin", "Barselona", 0.15);
 -- INSERT INTO `salespeople` (`snum`, `sname`, `city`, `comm`) VALUES (1001, "Peel", "London", 0.12);
@@ -545,9 +545,37 @@ USE `test`;
 -- INSERT INTO `orders` (`onum`, `amt`, `odate`, `cnum`, `snum`) VALUES (3011, 9891.88, '2015-06-10', 2006, 1001);
 
 
+-- == Setting up the foreign key between `product` table `brand_id` column and `brand` table `id` column/ Name of the key is `fk_brand_product`
+-- ALTER TABLE `repeat_shop`.`product` ADD CONSTRAINT `fk_brand_product` FOREIGN KEY (`brand_id`) REFERENCES `repeat_shop`.`brand` (`id`) 
+-- ON DELETE NO ACTION -- actions then delete cell. If it would be CASCADE the deletion of the id from the `brand` table will result in a deletion rows with this brand is in the associated table `product`
+-- ON UPDATE NO ACTION; -- actions then update cell
+
+-- CREATE INDEX snum_custommers ON `customers` (`snum`);
+-- ALTER TABLE `test`.`salespeople` ADD CONSTRAINT `fk_smun_salespeople` FOREIGN KEY (`snum`) REFERENCES `test`.`customers` (`snum`)
+	-- ON DELETE NO ACTION
+    -- ON UPDATE NO ACTION;
+    
+-- CREATE INDEX cnum_second_orders ON `orders` (`cnum`);
+-- ALTER TABLE `customers` ADD CONSTRAINT `fk_orders_cnum` FOREIGN KEY (`cnum`) REFERENCES `test`.`orders` (`cnum`)
+		-- ON DELETE NO ACTION
+        -- ON UPDATE NO ACTION;
+
+USE `test`;        
+-- SELECT `onum`, `amt`, `odate` FROM `orders`;        
+-- SELECT * FROM `customers` WHERE `snum` = 1001;
+
+-- SELECT `customers`.`city`, `salespeople`.`sname`, `customers`.`snum`, `salespeople`.`comm` FROM `salespeople` 
+-- INNER JOIN `customers` ON `salespeople`.`snum` = `customers`.`snum`;
 
 
+-- UPDATE `result` SET `result`.`result` = `result`.`result` - 2 WHERE `result`.`competition_id` = (SELECT `aaa` FROM 
+-- (SELECT `competition`.`competition_id` AS `aaa` FROM `competition`
+	-- INNER JOIN `result` ON `competition`.`competition_id` = `result`.`competition_id`
+	-- WHERE year(`competition`.`set_date`) < 2004 AND `result`.`result` = 50) AS `a` ); 
+-- UPDATE `customers` SET `city` = "SanJose" WHERE `cnum` = (SELECT `aaa` FROM (SELECT `cnum` as `aaa` FROM `customers` WHERE `city` = "San Jose") AS `a`);
+-- SELECT `customers`.`rating`, `customers`.`cname` FROM `customers` WHERE `city` = "SanJose";
 
+SELECT DISTINCT `snum` FROM `orders`;
 
 
 
