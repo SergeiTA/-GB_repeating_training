@@ -560,7 +560,7 @@ USE `repeat_shop`;
 		-- ON DELETE NO ACTION
         -- ON UPDATE NO ACTION;
 
-USE `test`;        
+
 -- SELECT `onum`, `amt`, `odate` FROM `orders`;        
 -- SELECT * FROM `customers` WHERE `snum` = 1001;
 
@@ -575,11 +575,18 @@ USE `test`;
 -- UPDATE `customers` SET `city` = "SanJose" WHERE `cnum` = (SELECT `aaa` FROM (SELECT `cnum` as `aaa` FROM `customers` WHERE `city` = "San Jose") AS `a`);
 -- SELECT `customers`.`rating`, `customers`.`cname` FROM `customers` WHERE `city` = "SanJose";
 
-SELECT DISTINCT `snum` FROM `orders`;
+USE `test`;        
+-- SELECT DISTINCT `snum` FROM `orders`;
+-- SELECT * FROM `orders` WHERE `amt` > 1000;
+-- SELECT `salespeople`.`sname`, `salespeople`.`city` FROM `salespeople` WHERE `comm` > 0.1;
+-- SELECT * FROM `customers` WHERE `rating` <= 100 AND `city` = "Rome";
 
+-- SELECT * FROM Orders WHERE (amt < 1000 OR NOT (odate = '2015-03-10' AND cnum > 2003 ));
+	
+-- SELECT * FROM `orders`WHERE NOT ((odate = '2015-03-10' OR snum > 1006) AND amt >= 1500 );
 
-
-
+-- SELECT * FROM `salespeople`;
+SELECT * FROM `orders` WHERE `odate` IN ('2015-03-10', '2015-04-10');
 
 
 
