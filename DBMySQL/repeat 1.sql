@@ -575,7 +575,7 @@ USE `repeat_shop`;
 -- UPDATE `customers` SET `city` = "SanJose" WHERE `cnum` = (SELECT `aaa` FROM (SELECT `cnum` as `aaa` FROM `customers` WHERE `city` = "San Jose") AS `a`);
 -- SELECT `customers`.`rating`, `customers`.`cname` FROM `customers` WHERE `city` = "SanJose";
 
-USE `test`;        
+
 -- SELECT DISTINCT `snum` FROM `orders`;
 -- SELECT * FROM `orders` WHERE `amt` > 1000;
 -- SELECT `salespeople`.`sname`, `salespeople`.`city` FROM `salespeople` WHERE `comm` > 0.1;
@@ -586,10 +586,25 @@ USE `test`;
 -- SELECT * FROM `orders`WHERE NOT ((odate = '2015-03-10' OR snum > 1006) AND amt >= 1500 );
 
 -- SELECT * FROM `salespeople`;
-SELECT * FROM `orders` WHERE `odate` IN ('2015-03-10', '2015-04-10');
+-- SELECT * FROM `orders` WHERE `odate` IN ('2015-03-10', '2015-04-10');
 
+      
+-- SELECT * FROM `customers`
+	-- INNER JOIN `salespeople`ON `customers`.`snum` = `salespeople`.`snum`
+    -- WHERE `sname` IN ("Peel", "Motika");
 
+-- SELECT * FROM `customers`WHERE `cname` >= 'A' AND `cname` < 'H'; -- Имена начинаются с A до G
+-- SELECT * FROM `customers` WHERE `cname` LIKE 'C%';
+-- INSERT INTO `orders` (`onum`, `amt`, `odate`, `cnum`, `snum`) VALUES (3004, 0, '2017-10-30', 2005, 1005);
+-- INSERT INTO `customers` (`cnum`, `cname`, `city`, `rating`, `snum`) VALUES (2005, "Shultz", "Vena", 150, 1005);
 
+-- SELECT * FROM `customers` 
+	-- INNER JOIN `orders` ON `customers`.`cnum` = `orders`.`cnum`
+    -- WHERE `orders`.`amt` IN (0, null);
+    
+USE `test`;  
+SELECT sum(`amt`) AS `amt_amount` FROM `orders` WHERE month(`odate`) = 3 AND day(`odate`) = 10;
+    
 
 
 
