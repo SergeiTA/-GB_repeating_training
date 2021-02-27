@@ -603,10 +603,12 @@ USE `repeat_shop`;
     -- WHERE `orders`.`amt` IN (0, null);
     
 USE `test`;  
-SELECT sum(`amt`) AS `amt_amount` FROM `orders` WHERE month(`odate`) = 3 AND day(`odate`) = 10;
-    
-
-
+-- SELECT sum(`amt`) AS `amt_amount` FROM `orders` WHERE month(`odate`) = 3 AND day(`odate`) = 10;
+-- SELECT count(DISTINCT `city`) FROM `customers` WHERE `city`IS NOT NULL;   
+-- SELECT `orders`.`snum`, `onum`, min(`amt`), `odate`, `orders`.`cnum` FROM `orders` GROUP BY `orders`.`snum`; -- наименьшую сумму для каждого заказчика
+-- SELECT * FROM `customers` WHERE `cname` LIKE 'G%' ORDER BY `cname`;
+-- SELECT `customers`.`cnum`, `cname`, `customers`.`city`, max(`rating`), `customers`.`snum` FROM `customers` GROUP BY `city`;
+-- SELECT `orders`.`snum`, count(`onum`), `amt`, `odate`, `orders`.`cnum` FROM `orders`GROUP BY `cnum`;
 
 
 
