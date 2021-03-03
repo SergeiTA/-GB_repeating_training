@@ -602,13 +602,49 @@ USE `repeat_shop`;
 	-- INNER JOIN `orders` ON `customers`.`cnum` = `orders`.`cnum`
     -- WHERE `orders`.`amt` IN (0, null);
     
-USE `test`;  
+ 
 -- SELECT sum(`amt`) AS `amt_amount` FROM `orders` WHERE month(`odate`) = 3 AND day(`odate`) = 10;
 -- SELECT count(DISTINCT `city`) FROM `customers` WHERE `city`IS NOT NULL;   
 -- SELECT `orders`.`snum`, `onum`, min(`amt`), `odate`, `orders`.`cnum` FROM `orders` GROUP BY `orders`.`snum`; -- наименьшую сумму для каждого заказчика
 -- SELECT * FROM `customers` WHERE `cname` LIKE 'G%' ORDER BY `cname`;
 -- SELECT `customers`.`cnum`, `cname`, `customers`.`city`, max(`rating`), `customers`.`snum` FROM `customers` GROUP BY `city`;
 -- SELECT `orders`.`snum`, count(`onum`), `amt`, `odate`, `orders`.`cnum` FROM `orders`GROUP BY `cnum`;
+
+USE `test`; 
+-- SELECT `salespeople`.`snum`, `orders`.`onum`, `salespeople`.`comm`, `orders`.`amt`, `orders`.`amt`*`salespeople`.`comm` AS `comm sum`  FROM `salespeople`
+	-- INNER JOIN `orders` ON `salespeople`.`snum` = `orders`.`snum`;
+
+-- SELECT "For the city",`city`, "the highest rating is: ", max(`rating`) FROM `customers` GROUP BY `city`;
+-- SELECT `orders`.`cnum`, `customers`.`rating`, `customers`.`cname` FROM `orders`
+	-- INNER JOIN `customers` ON `orders`.`cnum` = `customers`.`cnum` group by `orders`.`cnum` ORDER BY `orders`.`cnum` ASC;
+-- SELECT `orders`.`onum`, `customers`.`cname` FROM `orders`
+	-- INNER JOIN `customers` ON `orders`.`cnum` = `customers`.`cnum`;
+SELECT `customers`.`cname`, `salespeople`.`sname`, `salespeople`.`comm` FROM `customers`
+	INNER JOIN `salespeople` ON `customers`.`snum` = `salespeople`.`snum`
+    WHERE `salespeople`.`comm` > 0.12;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
