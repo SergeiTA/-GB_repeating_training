@@ -610,7 +610,7 @@ USE `repeat_shop`;
 -- SELECT `customers`.`cnum`, `cname`, `customers`.`city`, max(`rating`), `customers`.`snum` FROM `customers` GROUP BY `city`;
 -- SELECT `orders`.`snum`, count(`onum`), `amt`, `odate`, `orders`.`cnum` FROM `orders`GROUP BY `cnum`;
 
-USE `test`; 
+
 -- SELECT `salespeople`.`snum`, `orders`.`onum`, `salespeople`.`comm`, `orders`.`amt`, `orders`.`amt`*`salespeople`.`comm` AS `comm sum`  FROM `salespeople`
 	-- INNER JOIN `orders` ON `salespeople`.`snum` = `orders`.`snum`;
 
@@ -619,12 +619,25 @@ USE `test`;
 	-- INNER JOIN `customers` ON `orders`.`cnum` = `customers`.`cnum` group by `orders`.`cnum` ORDER BY `orders`.`cnum` ASC;
 -- SELECT `orders`.`onum`, `customers`.`cname` FROM `orders`
 	-- INNER JOIN `customers` ON `orders`.`cnum` = `customers`.`cnum`;
-SELECT `customers`.`cname`, `salespeople`.`sname`, `salespeople`.`comm` FROM `customers`
-	INNER JOIN `salespeople` ON `customers`.`snum` = `salespeople`.`snum`
-    WHERE `salespeople`.`comm` > 0.12;
+-- SELECT `customers`.`cname`, `salespeople`.`sname`, `salespeople`.`comm` FROM `customers`
+	-- INNER JOIN `salespeople` ON `customers`.`snum` = `salespeople`.`snum`
+    -- WHERE `salespeople`.`comm` > 0.12;
 
+USE `test`; 
+-- SELECT `customers`.`cnum`, `customers`.`cname`, `orders`.`onum`, `orders`.`snum`, `customers`.`rating`, sum(`orders`.`amt`) FROM `orders` 
+	-- INNER JOIN `customers` ON `orders`.`cnum` = `customers`.`cnum`
+    -- WHERE `customers`.`rating` > 100 group by `orders`.`snum`;
 
+-- SELECT * FROM `salespeople` 
+	-- INNER JOIN `orders` ON `salespeople`.`snum` = `orders`.`snum`
+    -- INNER JOIN `customers` ON `orders`.`cnum` = `customers`.`cnum`
+	-- WHERE `salespeople`.`city` IN (SELECT `city` FROM `salespeople` group by `city` having count(*)>1); 
+    
+-- SELECT * FROM `orders` 
+	-- INNER JOIN `customers` ON `orders`.`cnum` = `customers`.`cnum`
+    -- WHERE `customers`.`cname` = "Cineros";     
 
+-- SELECT * FROM `customers` WHERE `rating` = (SELECT `rating` FROM `customers` WHERE `cnum` = (SELECT `cnum` FROM `customers` WHERE `cname` = "Hoffman"));
 
 
 
