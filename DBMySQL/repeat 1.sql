@@ -623,7 +623,7 @@ USE `repeat_shop`;
 	-- INNER JOIN `salespeople` ON `customers`.`snum` = `salespeople`.`snum`
     -- WHERE `salespeople`.`comm` > 0.12;
 
-USE `test`; 
+
 -- SELECT `customers`.`cnum`, `customers`.`cname`, `orders`.`onum`, `orders`.`snum`, `customers`.`rating`, sum(`orders`.`amt`) FROM `orders` 
 	-- INNER JOIN `customers` ON `orders`.`cnum` = `customers`.`cnum`
     -- WHERE `customers`.`rating` > 100 group by `orders`.`snum`;
@@ -639,9 +639,24 @@ USE `test`;
 
 -- SELECT * FROM `customers` WHERE `rating` = (SELECT `rating` FROM `customers` WHERE `cnum` = (SELECT `cnum` FROM `customers` WHERE `cname` = "Hoffman"));
 
+USE `test`;
+-- SELECT avg(`amt`) FROM `orders`;
+-- SELECT * FROM `orders`
+	-- WHERE `amt` >= (SELECT avg(`amt`) FROM `orders`);
+-- SELECT `snum`, sum(`amt`) as `amount` FROM `orders` 
+	-- GROUP BY `snum`  
+	-- HAVING `amount` > (SELECT max(`amt`) FROM `orders`);
 
+-- SELECT `orders`.`onum`, max(`orders`.`amt`) as `max_amount`, `orders`.`odate`, `orders`.`cnum`, `orders`.`snum`, `salespeople`.`sname` FROM `orders` 
+	-- INNER JOIN `salespeople` ON `orders`.`snum` = `salespeople`.`snum`
+    -- GROUP BY `orders`.`snum`;
 
+-- SELECT `cnum`, `cname`, `city`, `rating` FROM `customers` a 
+	-- WHERE `rating` = (SELECT max(`rating`) FROM `customers` b WHERE a.`city` = b.`city`);
 
+-- SELECT DISTINCT first.`snum`, `sname` FROM `salespeople` first, `customers` second
+	-- WHERE first.`city` = second.`city`
+		-- AND first.`snum` <> second.`snum`;
 
 
 
